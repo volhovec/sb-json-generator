@@ -1,1 +1,3 @@
-module "SnowballDataGenerator"
+module SnowballDataGenerator
+
+go 1.15
