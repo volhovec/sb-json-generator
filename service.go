@@ -9,7 +9,7 @@ func main() {
 	log.Println(generateResponse())
 }
 
-func generateResponse() string {
+func generateResponse() float64 {
 	sb := new(structs.Snowball)
 	return sb.Generate()
 }

@@ -1,5 +1,9 @@
 package structs
 
+import (
+	"log"
+)
+
 type Snowball struct {
 	Response struct {
 		Num           string `json:"num"`
@@ -39,13 +43,42 @@ type Snowball struct {
 		} `json:"overflow"`
 	} `json:"collapsed"`
 
-	Overdue struct {
-		Count int     `json:"count"`
-		Sum   float64 `json:"sum"`
-	} `json:"overdue"`
+	overdue Agregate `json:"overdue"`
 }
 
-func (sb Snowball) Generate() string {
+type Agregate struct {
+	Count int     `json:"count"`
+	Sum   float64 `json:"sum"`
+}
 
-	return "Другой"
+func (sb Snowball) Generate() float64 {
+	/**
+	var a, b *int64
+	if true { // супер условие
+	   var fooA = int64(100)
+	   a = &fooA
+	}
+	if true { // супер условие
+	   var fooB = int64(-100)
+	   b = &fooB
+	}
+	foo(a, b)
+	*/
+	var a, b *int64
+	*a = 100
+	*b = -100
+	log.Println(generateSum(true, a, b))
+	*a = 200
+	*b = 100
+	log.Println(generateSum(false, a, b))
+	*a = -100
+	*b = -200
+	log.Println(generateSum(false, a, b))
+	res, _ := generateSum(true, nil, nil)
+	return res
+}
+
+func (ag Agregate) Generate(limit int) {
+	ag.Count = 1
+	ag.Sum = 1
 }
