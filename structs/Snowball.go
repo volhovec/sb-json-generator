@@ -1,7 +1,7 @@
 package structs
 
 import (
-	"log"
+	"strconv"
 )
 
 type Snowball struct {
@@ -51,31 +51,11 @@ type Agregate struct {
 	Sum   float64 `json:"sum"`
 }
 
-func (sb Snowball) Generate() float64 {
-	/**
-	var a, b *int64
-	if true { // супер условие
-	   var fooA = int64(100)
-	   a = &fooA
-	}
-	if true { // супер условие
-	   var fooB = int64(-100)
-	   b = &fooB
-	}
-	foo(a, b)
-	*/
-	var a, b *int64
-	*a = 100
-	*b = -100
-	log.Println(generateSum(true, a, b))
-	*a = 200
-	*b = 100
-	log.Println(generateSum(false, a, b))
-	*a = -100
-	*b = -200
-	log.Println(generateSum(false, a, b))
-	res, _ := generateSum(true, nil, nil)
-	return res
+func (sb Snowball) Generate() string {
+	res, _ := generateSum(false, 10000, -10000)
+	str := strconv.FormatFloat(res, 'f', 2, 64)
+
+	return str
 }
 
 func (ag Agregate) Generate(limit int) {
